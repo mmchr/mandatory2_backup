@@ -16,13 +16,13 @@ export class UserService {
     /*
      * Get blog messages from server
      */
-   /* getUsersFromServer(): Observable<User[]> {
+    getUsersFromServer(): Observable<User[]> {
         return this.http.get(this.getUsersUrl)
             .map(this.extractData)
             .catch(this.handleError);
-    }*/
+    }
 
-    getUsersFromServer(): Observable<User[]> {
+    /*getUsersFromServer(): Observable<User[]> {
         let observable = new Observable(observer => {
             console.log("Socket:",this.url);
             this.socket = io(this.url);
@@ -35,7 +35,7 @@ export class UserService {
             };
         });
         return observable;
-    }
+    }*/
 
     addUser (user: User): Observable<User> {
         let headers = new Headers({ 'Content-Type': 'application/json' });

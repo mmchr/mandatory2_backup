@@ -11,6 +11,6 @@ exports.userSchema = new Schema({
         trim: true,
         unique: true,
         required: true
-    }
+    },
 });
 exports.User = mongoose.model('User',exports.userSchema);

@@ -1,0 +1,61 @@
+
+<div class="container-fluid" id="indexContainer">
+  <div class="col-md-3">
+    <h2>Chatrooms:</h2>
+    <div class="list-group">
+      <button type="button" class="list-group-item" *ngFor="let chatroom of chatrooms">
+        <a [routerLink]="[chatroom.roomName]" routerLinkActive="active">{{chatroom.roomName}}</a>
+      </button>
+      <button type="button" class="list-group-item">
+        <a routerLink="/chatroom" routerLinkActive="active">New chatroom <span class="glyphicon glyphicon-plus"></span></a>
+      </button>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+  <div class="col-md-7">
+  <h2>Chatrooms:</h2>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{selectedChatRoom}}</h3>
+    </div>
+    <div class="panel-body chat-window">
+      <div class="col-md-12">
+        <div *ngFor="let chatMessage of chatMessages">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{chatMessage.author}}</h3>
+            </div>
+            <div class="panel-body">
+              {{chatMessage.roomName}}
+              {{chatMessage.message}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2>Create new blog message</h2>
+  <form (ngSubmit)="addChatMessage()">
+    <div class="form-group">
+      <label for="chatroom">Your Message</label>
+      <input type="text"  class="form-control" id="name"
+             placeholder="Name"
+             required
+             [(ngModel)]="model.author" name="author">
+      <input type="text"  class="form-control" id="chatroom"
+             placeholder="Message"
+             required
+             [(ngModel)]="model.message" name="message">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+  </div>
+  <div class="col-md-2">
+    <h2>Users:</h2>
+    <div class="list-group">
+      <button type="button" class="list-group-item" *ngFor="let user of users">
+        {{user.username}}
+      </button>
+    </div>
+  </div>
+</div>

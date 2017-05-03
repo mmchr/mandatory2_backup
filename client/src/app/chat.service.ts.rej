@@ -1,0 +1,23 @@
+diff a/client/src/app/chat.service.ts b/client/src/app/chat.service.ts	(rejected hunks)
+@@ -3,17 +3,21 @@
+ import { Observable }     from 'rxjs/Observable';
+ import 'rxjs/Rx';
+ import { Chat } from "./chat/chat.model";
++import { Chatroom } from "./chatroom/chatroom.model";
+ import * as io from 'socket.io-client';
+ 
+ @Injectable()
+ export class ChatService {
+     private getChatUrl = 'message/get';  // URL to web API
+     private postChatUrl = 'message/post';  // URL to web API
++    private getChatroomsUrl = 'chatroom/get';  // URL to web API
++    private postChatroomUrl = 'chatroom/post';  // URL to web API
+     constructor (private http: Http) {}
+     private url = window.location.origin;
+     private socket = io(this.url);
+ 
+ 
++
+     getChatMessagesFromServer(selectedChatRoom): Observable<Chat[]> {
+         let observable = new Observable(observer => {
+             console.log("Socket:",this.url + selectedChatRoom);

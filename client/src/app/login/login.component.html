@@ -1,0 +1,29 @@
+<div class="container-fluid" id="indexContainer">
+  <div class="col-md-12">
+    <h2>Users Online</h2>
+    <ul>
+      <li *ngFor="let user of users">
+        {{user.username}}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-8 col-md-offset-2">
+    <h1 class="h1-custom">Login</h1>
+    <div id="userSubmitForm">
+      <form (ngSubmit)="addUser()" class="form-horizontal">
+        <div class="form-group">
+          <label for="author">Enter an unqiue username</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="author" required [(ngModel)]="model.username" name="username"
+                   placeholder="Username">
+            <span class="input-group-btn">
+          <input class="btn btn-success" id="login-btn" type="submit" value="Login"/>
+        </span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+

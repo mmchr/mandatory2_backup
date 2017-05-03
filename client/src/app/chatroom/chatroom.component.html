@@ -1,0 +1,36 @@
+<div class="container-fluid" id="indexContainer">
+  <div class="col-md-3">
+    <h2>Chatrooms</h2>
+    <div class="list-group">
+      <button type="button" class="list-group-item" *ngFor="let chatroom of chatrooms">
+        <a [routerLink]="[chatroom.roomName]" (click)="switchRoom(chatroom.roomName)" routerLinkActive="active">{{chatroom.roomName}}</a>
+      </button>
+      <button type="button" class="list-group-item">
+        <a routerLink="/chatroom" routerLinkActive="active">New chatroom <span class="glyphicon glyphicon-plus"></span></a>
+      </button>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+  <div class="col-md-7">
+    <h2>Create new Chatroom</h2>
+    <form (ngSubmit)="addChatroom()">
+      <div class="input-group" (ngSubmit)="addChatroom()">
+        <input type="text" class="form-control" id="chatroom"
+               placeholder="Chatroom name"
+               required
+               [(ngModel)]="model.roomName" name="Roomname">
+        <span class="input-group-btn">
+      <button class="btn btn-primary" type="submit">Create</button>
+    </span>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-2">
+    <h2>Users</h2>
+    <div class="list-group">
+      <button type="button" class="list-group-item" *ngFor="let user of users">
+        {{user.username}}
+      </button>
+    </div>
+  </div>
+</div>

@@ -10,6 +10,8 @@ var database = require('../model/database');
 /* POST single user */
 router.post('/post', function(req, res, next) {
     var instance = new schema.User(req.body);
+    req.session.username = req.body.username;
+    console.log(req.session.username);
     /** Example post body:
      {
        "username": "Christoffer"

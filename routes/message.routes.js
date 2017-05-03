@@ -9,8 +9,8 @@ var database = require('../model/database');
 
 /* POST single message */
 router.post('/post', function(req, res, next) {
+    req.body.author = req.session.username;
     var instance = new schema.Message(req.body);
-
     instance.save(function (err, Message) {
         result = err?err:Message;
         res.send(result);
@@ -51,7 +51,6 @@ router.addMessage = function (roomName) {
 
 router.notifyclients = function (roomName) {
     schema.Message.find({roomName}).exec(function (err, messages) {
-        console.log("roomname is: " + roomName);
         if (err)
             return console.error(err);
         router.clients.forEach(function(socket){

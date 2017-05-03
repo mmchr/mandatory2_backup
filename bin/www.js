@@ -12,6 +12,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var socketio = require('socket.io');
+var session = require('express-session');
 
 var user = require('../routes/user.routes');
 var message = require('../routes/message.routes');
@@ -27,6 +28,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(session({
+    saveUninitialized: true,
+    resave: true,
+    secret: 'developmentSessionSecret'
+}));
 
 
 app.use('/user', user);
